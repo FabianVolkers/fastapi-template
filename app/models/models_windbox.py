@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer
 
-from ..db.database import Base
+from db.database import Base
 
 class Windbox(Base):
     __tablename__ = "windboxes"
