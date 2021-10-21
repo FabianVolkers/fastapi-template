@@ -8,6 +8,9 @@ class WindboxBase(BaseModel):
 class WindboxCreate(WindboxBase):
     pass
 
+class WindboxUpdate(WindboxBase):
+    pass
+
 class Windbox(WindboxBase):
     id: int
 
