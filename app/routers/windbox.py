@@ -1,10 +1,12 @@
 from fastapi import APIRouter, Depends
 
-from typing import List
+from typing import Any, List
 from dependencies import get_db
 
-from crud import crud_windbox as crud
+from crud import crud_windbox
 from schemas.schemas_windbox import Windbox
+
+from sqlalchemy.orm import Session
 
 router = APIRouter(
     prefix="/windbox",
@@ -18,7 +20,7 @@ async def read_windboxes():
     return[{"windbox": "WB0001"}, {"windbox": "WB0002"}]
 
 
-@router.get("/{id}")
-async def read_windbox(id: str):
-    windbox = crud.get_windbox(db=get_db(), windbox_id=id)
+@router.get("/{id}", response_model=Windbox)
+async def read_windbox(*, db: Session = Depends(get_db), id: str) -> Any:
+    windbox = crud_windbox.windbox.get(db, id=id)
     return windbox
