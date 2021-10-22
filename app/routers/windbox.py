@@ -1,13 +1,9 @@
-from fastapi import APIRouter, Depends
-
 from typing import Any, List
-from dependencies import get_db
 
 from crud import crud_windbox
 from dependencies import get_db
 from fastapi import APIRouter, Depends
 from schemas.schemas_windbox import Windbox
-
 from sqlalchemy.orm import Session
 
 router = APIRouter(
@@ -15,6 +11,7 @@ router = APIRouter(
     tags=["windbox"],
     dependencies=[Depends(get_db)]
 )
+
 
 @router.get("/", response_model=List[Windbox])
 async def read_windboxes(*, db: Session = Depends(get_db)):
