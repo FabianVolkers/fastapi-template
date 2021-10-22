@@ -49,4 +49,4 @@ async def update_windbox(
 
 @router.delete("/{id}", response_model=None, status_code=HTTPStatus.NO_CONTENT)
 async def delete_windbox(id: str, db: Session = Depends(get_db)):
-    return crud_windbox.windbox.remove(id=id)
+    return crud_windbox.windbox.remove(db=db, id=id)
