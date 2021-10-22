@@ -1,6 +1,5 @@
-from sqlalchemy import Column, Integer
-
 from db.database import Base
+from sqlalchemy import Column, Integer
 
 
 class Windbox(Base):

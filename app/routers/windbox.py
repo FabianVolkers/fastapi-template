@@ -4,6 +4,8 @@ from typing import Any, List
 from dependencies import get_db
 
 from crud import crud_windbox
+from dependencies import get_db
+from fastapi import APIRouter, Depends
 from schemas.schemas_windbox import Windbox
 
 from sqlalchemy.orm import Session

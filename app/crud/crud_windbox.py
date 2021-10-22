@@ -2,9 +2,11 @@
 
 from models.models_windbox import Windbox
 from schemas.schemas_windbox import WindboxCreate, WindboxUpdate
-# import models, schemas
 
 from crud.base import CRUDBase
+
+# import models, schemas
+
 
 
 class CRUDWindbox(CRUDBase[Windbox, WindboxCreate, WindboxUpdate]):

@@ -2,13 +2,11 @@
 
 from fastapi import Depends, FastAPI
 
-from routers import wireguard, windbox
-
-from db.database import engine
-
 import crud
 import models
 import schemas
+from db.database import engine
+from routers import windbox, wireguard
 
 # models.Base.metadata.create_all(bind=engine)
 
