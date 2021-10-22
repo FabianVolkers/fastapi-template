@@ -1,10 +1,10 @@
+from http import HTTPStatus
 from typing import Any, List
-from schemas.schemas_windbox import WindboxCreate
+from schemas.schemas_windbox import Windbox, WindboxCreate, WindboxUpdate
 
 from crud import crud_windbox
 from dependencies import get_db
 from fastapi import APIRouter, Depends
-from schemas.schemas_windbox import Windbox
 from sqlalchemy.orm import Session
 
 router = APIRouter(
@@ -20,12 +20,6 @@ async def read_windboxes(*, db: Session = Depends(get_db)):
     return windboxes
 
 
-@router.get("/{id}", response_model=Windbox)
-async def read_windbox(*, db: Session = Depends(get_db), id: str) -> Any:
-    windbox = crud_windbox.windbox.get(db, id=id)
-    return windbox
-
-
 @router.post("/", response_model=Windbox)
 async def create_windbox(
     *,
@@ -33,6 +27,12 @@ async def create_windbox(
     db: Session = Depends(get_db)
  ) -> Windbox:
     return crud_windbox.windbox.create(db, obj_in=windbox)
+
+
+@router.get("/{id}", response_model=Windbox)
+async def read_windbox(*, db: Session = Depends(get_db), id: str) -> Any:
+    windbox = crud_windbox.windbox.get(db, id=id)
+    return windbox
 
 
 @router.put("/{id}", response_model=Windbox)
