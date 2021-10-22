@@ -17,9 +17,9 @@ router = APIRouter(
 )
 
 @router.get("/", response_model=List[Windbox])
-async def read_windboxes():
-    #windboxes = crud.get_windboxes()
-    return[{"windbox": "WB0001"}, {"windbox": "WB0002"}]
+async def read_windboxes(*, db: Session = Depends(get_db)):
+    windboxes = crud_windbox.windbox.get_multi(db)
+    return windboxes
 
 
 @router.get("/{id}", response_model=Windbox)
