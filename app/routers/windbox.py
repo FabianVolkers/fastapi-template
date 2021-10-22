@@ -1,4 +1,5 @@
 from typing import Any, List
+from schemas.schemas_windbox import WindboxCreate
 
 from crud import crud_windbox
 from dependencies import get_db
@@ -23,3 +24,12 @@ async def read_windboxes(*, db: Session = Depends(get_db)):
 async def read_windbox(*, db: Session = Depends(get_db), id: str) -> Any:
     windbox = crud_windbox.windbox.get(db, id=id)
     return windbox
+
+
+@router.post("/", response_model=Windbox)
+async def create_windbox(
+    *,
+    windbox: WindboxCreate,
+    db: Session = Depends(get_db)
+ ) -> Windbox:
+    return crud_windbox.windbox.create(db, obj_in=windbox)
