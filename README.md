@@ -16,10 +16,18 @@ pip install -r requirements.txt
 
 ### Create the development database
 
+We use alembic for db migrations.
+
+```zsh
+cd app
+alembic upgrade head
+```
+
 
 ### Run the app
 
 ```zsh
+# cd $PROJECT_ROOT
 # Start development server
 uvicorn main:app --reload
 ```
