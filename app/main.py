@@ -1,11 +1,12 @@
 # from typing import Optional
 
 from fastapi import Depends, FastAPI
+from dependencies import get_settings
 
 import crud
 import models
 import schemas
-from db.database import engine
+from db.database import get_db_engine
 from routers import windbox, wireguard
 
 # models.Base.metadata.create_all(bind=engine)
