@@ -50,7 +50,7 @@ Usage:
 autopep8 --in-place --aggressive /path/to/file
 ```
  
- #### Python refactor
+#### Python refactor
 
  A vscode extension for refactoring python code
 
