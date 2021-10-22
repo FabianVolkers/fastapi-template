@@ -11,6 +11,7 @@ Setup a virtual environment using your preferred tool.
 ```zsh
 # Install requirements
 pip install -r requirements.txt
+pip install -e .
 
 ```
 
