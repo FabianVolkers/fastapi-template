@@ -1,21 +1,25 @@
-from typing import List, Optional
+# from typing import List, Optional
 
 from pydantic import BaseModel
 
-# Shared properties
+
 class WindboxBase(BaseModel):
+    # Shared properties
     hostname: str
 
-# Properties to receive on item creation
+
 class WindboxCreate(WindboxBase):
+    # Properties to receive on item creation
     pass
 
-# Properties to receive on item update
+
 class WindboxUpdate(WindboxBase):
+    # Properties to receive on item update
     pass
 
-# Properties shared by models stored in DB
+
 class Windbox(WindboxBase):
+    # Properties shared by models stored in DB
     id: int
 
     class Config:

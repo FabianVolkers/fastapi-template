@@ -17,7 +17,7 @@ UpdateSchemaType = TypeVar("UpdateSchemaType", bound=BaseModel)
 class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
     def __init__(self, model: Type[ModelType]):
         """
-        CRUD object with default methods to Create, Read, Update, Delete (CRUD).
+        CRUD object with default methods to Create, Read, Update, Delete (CRUD)
 
         **Parameters**
 
@@ -29,6 +29,10 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
     def get(self, db: Session, id: Any) -> Optional[ModelType]:
         return db.query(self.model).filter(self.model.id == id).first()
 
+    #
+    #  Potentially better implementation of get_multi:
+    # https://github.com/acidjunk/fastapi-postgres-boilerplate/blob/558ac100977c7c6c9bb45d709c51f172aba2f988/server/crud/base.py#L39
+    #
     def get_multi(
         self, db: Session, *, skip: int = 0, limit: int = 100
     ) -> List[ModelType]:

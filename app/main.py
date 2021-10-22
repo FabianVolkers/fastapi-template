@@ -1,4 +1,4 @@
-from typing import Optional
+# from typing import Optional
 
 from fastapi import Depends, FastAPI
 
@@ -6,15 +6,18 @@ from routers import wireguard, windbox
 
 from db.database import engine
 
-import crud, models, schemas
+import crud
+import models
+import schemas
 
-#models.Base.metadata.create_all(bind=engine)
+# models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
 
 app.include_router(wireguard.router)
 app.include_router(windbox.router)
+
 
 @app.get("/")
 def read_root():
