@@ -33,3 +33,15 @@ async def create_windbox(
     db: Session = Depends(get_db)
  ) -> Windbox:
     return crud_windbox.windbox.create(db, obj_in=windbox)
+
+
+@router.put("/{id}", response_model=Windbox)
+async def update_windbox(
+    *,
+    id: str,
+    windbox: WindboxUpdate,
+    db: Session = Depends(get_db)
+  ) -> Windbox:
+    current_windbox = crud_windbox.windbox.get(db, id)
+    return crud_windbox.windbox.update(
+        db, db_obj=current_windbox, obj_in=windbox)
