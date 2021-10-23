@@ -14,3 +14,10 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+
+class TestSettings(Settings):
+    sqlalchemy_database_url: str = os.getenv(
+        "TEST_DATABASE_URL",
+        "sqlite:///./config.test.db"
+        )
