@@ -6,8 +6,8 @@ from logging.config import fileConfig
 from alembic import context
 
 
-from models import models_windbox
-from dependencies import get_settings
+from app.models import models_windbox
+from app.dependencies import get_settings
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

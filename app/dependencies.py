@@ -2,8 +2,8 @@ from functools import lru_cache
 
 from fastapi.param_functions import Depends
 
-from config import Settings
-from db.database import get_session_local
+from app.config import Settings
+from app.db.database import get_session_local
 
 
 @lru_cache()

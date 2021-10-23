@@ -1,9 +1,9 @@
 from http import HTTPStatus
 from typing import Any, List
-from schemas.schemas_windbox import Windbox, WindboxCreate, WindboxUpdate
+from app.schemas.schemas_windbox import Windbox, WindboxCreate, WindboxUpdate
 
-from crud import crud_windbox
-from dependencies import get_db
+from app.crud import crud_windbox
+from app.dependencies import get_db
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
