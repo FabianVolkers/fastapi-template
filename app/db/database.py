@@ -2,7 +2,7 @@ from functools import lru_cache
 from sqlalchemy import create_engine
 from sqlalchemy.engine.base import Engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import scoped_session, sessionmaker
 
 # from app.config import settings
 
@@ -26,8 +26,8 @@ def get_db_engine(database_url: str) -> Engine:
 
 def get_session_local(database_url: str) -> sessionmaker:
     engine = get_db_engine(database_url)
-    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-    return SessionLocal()
+    SessionLocal = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
+    return SessionLocal
 
 
 Base = declarative_base()
