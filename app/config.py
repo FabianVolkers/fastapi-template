@@ -1,4 +1,5 @@
 import os
+from typing import Any
 
 from pydantic import BaseSettings
 
@@ -11,6 +12,9 @@ class Settings(BaseSettings):
         "DATABASE_URL",
         "sqlite:///./config.db"
         )
+
+    def __call__(self, *args: Any, **kwds: Any) -> Any:
+        return super().__call__(*args, **kwds)
 
 
 settings = Settings()
