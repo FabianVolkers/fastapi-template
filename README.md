@@ -4,6 +4,28 @@ Config service as RESTful API for the WindBox project. Built with FastAPI
 
 ## Running the development environment
 
+All of the steps identified below can also be run using make and the `Makefile`.
+
+### Bootstrap development environment
+
+```zsh
+# Configure venv, install pip requirements and setup db
+make bootstrap
+# Run the development server
+make run
+```
+
+### Development tools usage
+
+```zsh
+# Linting 
+make lint
+# Formatting
+make format
+# Testing
+make test
+```
+
 ### Setup virtual environment
 
 Setup a virtual environment using your preferred tool.
