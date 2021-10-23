@@ -12,8 +12,8 @@ def get_settings():
 
 
 def get_db(settings: Settings = Depends(get_settings)):
-    db = get_session_local(settings.sqlalchemy_database_url)  # SessionLocal()
+    db_session = get_session_local(settings.sqlalchemy_database_url)  # SessionLocal()
     try:
-        yield db
+        yield db_session
     finally:
-        db.close()
+        db_session.remove()
