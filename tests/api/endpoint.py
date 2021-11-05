@@ -76,22 +76,29 @@ class BaseTestEndpoint():
         for key in self.create_obj_cls.__table__.columns.keys():
             assert data[key] == getattr(create_obj, key)
 
-    def test__create(self, client):
-        response = client.post(f"{self.endpoint}/", json=self.data)
+    def test__update(self, client, create_obj):
+        response = client.put(
+            f"{self.endpoint}/{create_obj.id}",
+            json=self.update_data)
 
         assert response.status_code == 200
+
         data = response.json()
 
-        for key in self.data.keys():
-            assert data[key] == self.data[key]
+        assert data["id"] == create_obj.id
 
-        assert "id" in data
-        obj_id = data["id"]
+        for key in self.update_data.keys():
+            assert data[key] == self.update_data[key]
 
-        response = client.get(f"{self.endpoint}/{obj_id}")
-        assert response.status_code == 200, response.text
+        response = client.get(f"{self.endpoint}/{create_obj.id}")
+
+        assert response.status_code == 200
+
         data = response.json()
-        for key in self.data.keys():
-            assert data[key] == self.data[key]
+
+        assert data["id"] == create_obj.id
+
+        for key in self.update_data.keys():
+            assert data[key] == self.update_data[key]
 
         assert data["id"] == obj_id
