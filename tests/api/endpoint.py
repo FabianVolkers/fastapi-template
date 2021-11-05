@@ -12,7 +12,6 @@ from app.main import app as fa_app
 @pytest.mark.usefixtures("get_settings_override", "db")
 class BaseTestEndpoint():
 
-    create_obj_gen: Generator
     create_obj_cls: Any
     create_data: Dict
     update_data: Dict
