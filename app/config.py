@@ -25,3 +25,6 @@ class TestSettings(Settings):
         "TEST_DATABASE_URL",
         "sqlite:///./config.test.db"
         )
+
+    def __call__(self, *args: Any, **kwds: Any) -> Any:
+        return super().__call__(*args, **kwds)
