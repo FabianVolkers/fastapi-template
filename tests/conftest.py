@@ -13,7 +13,6 @@ from app.main import app as fa_app
 # Base, Order, OrderItem, Product, Store
 from app.models import models_windbox  # , models_wireguard
 
-
 target_metadata = [models_windbox.Base.metadata]
 
 settings = TestSettings()

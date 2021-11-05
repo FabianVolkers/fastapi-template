@@ -2,11 +2,12 @@
 
 from fastapi import FastAPI
 
+from app.routers import windbox, wireguard
+
 # import crud
 # import models
 # import schemas
 
-from app.routers import windbox, wireguard
 
 # models.Base.metadata.create_all(bind=engine)
 
