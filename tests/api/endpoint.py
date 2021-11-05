@@ -9,7 +9,7 @@ from app.dependencies import get_settings
 from app.main import app as fa_app
 
 
-@pytest.mark.usefixtures("get_settings_override")
+@pytest.mark.usefixtures("get_settings_override", "db")
 class BaseTestEndpoint():
 
     create_obj_gen: Generator
