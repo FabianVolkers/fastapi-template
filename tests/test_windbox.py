@@ -14,7 +14,7 @@ def create_windbox(db: Session) -> Generator[Windbox, None, None]:
     )
 
     db.add(windbox)
-    db.flush()
+    db.commit()
     yield windbox
     db.rollback()
 
