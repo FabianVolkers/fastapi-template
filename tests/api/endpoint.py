@@ -101,4 +101,14 @@ class BaseTestEndpoint():
         for key in self.update_data.keys():
             assert data[key] == self.update_data[key]
 
-        assert data["id"] == obj_id
+    def test__delete(self, client, create_obj):
+        response = client.delete(f"{self.endpoint}/{create_obj.id}")
+        assert response.status_code == 204
+
+        response = client.get(f"{self.endpoint}/{create_obj.id}")
+        assert response.status_code == 404
+
+        response = client.get(self.endpoint)
+        assert response.status_code == 200
+        data = response.json()
+        assert len(data) == 0
