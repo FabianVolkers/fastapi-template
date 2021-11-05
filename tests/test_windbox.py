@@ -81,3 +81,17 @@ def test_update(app_client: TestClient, create_windbox: Windbox) -> None:
     data = response.json()
     assert data["id"] == create_windbox.id
     assert data["hostname"] == "windbox03.windreserve.de"
+
+
+def test_delete(app_client: TestClient, create_windbox: Windbox) -> None:
+    response = app_client.delete(f"/windbox/{create_windbox.id}")
+    assert response.status_code == 204
+
+    response = app_client.get(f"/windbox/{create_windbox.id}")
+    assert response.status_code == 404
+
+    # TODO: make this work by resetting db for each test
+    # response = app_client.get("/windbox")
+    # assert response.status_code == 200
+    # data = response.json()
+    # assert len(data) == 0
