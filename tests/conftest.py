@@ -3,7 +3,7 @@ from typing import Any, Generator
 
 import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy.engine.base import Engine
+from sqlalchemy.engine.base import Connection, Engine, Transaction
 from sqlalchemy.orm import Session
 
 from app.config import TestSettings
@@ -36,18 +36,20 @@ def override_get_settings():
 #     return db_session
 
 
-@pytest.fixture(scope="module")
-def cleanup_db(db: Session) -> None:
-    for m in target_metadata:
-        for table in reversed(m.sorted_tables):
-            db.execute(table.delete())
+# @pytest.fixture(autouse=True)
+# def cleanup_db(db: Session) -> None:
+#     for m in target_metadata:
+#         for table in reversed(m.sorted_tables):
+#             db.execute(table.delete())
 
 
-@pytest.fixture(scope="session")
-def db() -> Generator:
+@pytest.fixture()
+def db() -> Generator[Session, None, None]:
     database_uri = override_get_settings().sqlalchemy_database_url
     session: Session = get_db_session(database_uri)()
     engine: Engine = session.bind
+    connection: Connection = engine.connect()
+    transaction: Transaction = connection.begin()
 
     # Loop through base metadata and create tables
     for m in target_metadata:
@@ -55,6 +57,10 @@ def db() -> Generator:
         m.create_all(bind=engine)
 
     yield session
+
+    session.close()
+    transaction.rollback()
+    connection.close()
 
 
 @pytest.fixture(scope="module")
