@@ -1,7 +1,7 @@
 from http import HTTPStatus
 from typing import List, Optional
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app.crud import crud_windbox
@@ -35,6 +35,8 @@ async def read_windbox(
     *, db: Session = Depends(get_db), id: int
 ) -> Optional[Windbox]:
     windbox = crud_windbox.windbox.get(db, id=id)
+    if not windbox:
+        raise HTTPException(404)
     return windbox
 
 
