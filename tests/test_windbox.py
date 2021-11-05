@@ -12,7 +12,7 @@ def create_windbox(db: Session) -> Generator[Windbox, None, None]:
     windbox = Windbox(
         hostname="windbox01.windreserve.de"
     )
-
+    db.begin()
     db.add(windbox)
     db.commit()
     yield windbox
@@ -52,7 +52,7 @@ def test_list(app_client: TestClient, create_windbox: Windbox) -> None:
     assert response[0]["hostname"] == create_windbox.hostname
 
 
-def test_get(app_client: TestClient, create_windbox: Windbox) -> None:
+def test_get(app_client: TestClient, create_windbox: Windbox, db: Session) -> None:
     rv = app_client.get(
         f"/windbox/{create_windbox.id}",
         headers={'accept': 'application/json'}
@@ -90,8 +90,7 @@ def test_delete(app_client: TestClient, create_windbox: Windbox) -> None:
     response = app_client.get(f"/windbox/{create_windbox.id}")
     assert response.status_code == 404
 
-    # TODO: make this work by resetting db for each test
-    # response = app_client.get("/windbox")
-    # assert response.status_code == 200
-    # data = response.json()
-    # assert len(data) == 0
+    response = app_client.get("/windbox")
+    assert response.status_code == 200
+    data = response.json()
+    assert len(data) == 0
