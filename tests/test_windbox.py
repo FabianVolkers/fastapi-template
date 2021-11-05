@@ -43,12 +43,13 @@ def test_create(app_client: TestClient) -> None:
     assert data["id"] == windbox_id
 
 
-# def test_list(app_client: TestClient, create_windbox: Windbox) -> None:
-#     rv = app_client.get("/windbox")
-#     response = rv.json()
-#     assert rv.status_code == 200
-#     assert response[0]["id"] == create_windbox.id
-#     #assert response[0]
+def test_list(app_client: TestClient, create_windbox: Windbox) -> None:
+    rv = app_client.get("/windbox")
+    response = rv.json()
+    assert rv.status_code == 200
+    assert len(response) == 1
+    assert response[0]["id"] == create_windbox.id
+    assert response[0]["hostname"] == create_windbox.hostname
 
 
 def test_get(app_client: TestClient, create_windbox: Windbox) -> None:
