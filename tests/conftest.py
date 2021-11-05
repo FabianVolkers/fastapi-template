@@ -85,5 +85,5 @@ def app_client(
     yield TestClient(fa_app)
 
     # Delete test db file
-    cwd = os.getcwd()
-    os.remove(f"{cwd}/config.test.db")
+    # cwd = os.getcwd()
+    # os.remove(f"{cwd}/config.test.db")
