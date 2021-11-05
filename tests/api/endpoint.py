@@ -14,7 +14,8 @@ class BaseTestEndpoint():
 
     create_obj_gen: Generator
     create_obj_cls: Any
-    data: Dict
+    create_data: Dict
+    update_data: Dict
     endpoint: str
 
     
