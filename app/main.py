@@ -6,7 +6,7 @@ from app.dependencies import get_settings
 # import crud
 # import models
 # import schemas
-from app.db.database import get_db_engine
+
 from app.routers import windbox, wireguard
 
 # models.Base.metadata.create_all(bind=engine)

@@ -3,10 +3,10 @@ from typing import Generator
 
 import pytest
 from fastapi.testclient import TestClient
-from app.config import Settings
-from app.models.models_windbox import Windbox
 from sqlalchemy.orm import Session
 
+from app.config import Settings
+from app.models.models_windbox import Windbox
 
 # @pytest.fixture()
 # def create_windbox(db: Session) -> Generator[Windbox, None, None]:

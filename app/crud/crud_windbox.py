@@ -1,9 +1,8 @@
 # from sqlalchemy.orm import Session
 
+from app.crud.base import CRUDBase
 from app.models.models_windbox import Windbox
 from app.schemas.schemas_windbox import WindboxCreate, WindboxUpdate
-
-from app.crud.base import CRUDBase
 
 # import models, schemas
 
