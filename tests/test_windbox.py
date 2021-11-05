@@ -52,7 +52,8 @@ def test_list(app_client: TestClient, create_windbox: Windbox) -> None:
     assert response[0]["hostname"] == create_windbox.hostname
 
 
-def test_get(app_client: TestClient, create_windbox: Windbox, db: Session) -> None:
+def test_get(app_client: TestClient, create_windbox: Windbox,
+             db: Session) -> None:
     rv = app_client.get(
         f"/windbox/{create_windbox.id}",
         headers={'accept': 'application/json'}
