@@ -24,8 +24,35 @@ class BaseTestEndpoint():
         yield TestClient(fa_app)
 
     @pytest.fixture
-    def create_obj(self):
-        pass
+    def create_obj(self, db):
+        obj = self.create_obj_cls(
+            **self.create_data
+        )
+        db.begin()
+        db.add(obj)
+        db.commit()
+        yield obj
+        db.rollback()
+
+    def test__create(self, client):
+        response = client.post(f"{self.endpoint}/", json=self.create_data)
+
+        assert response.status_code == 200
+        data = response.json()
+
+        for key in self.create_data.keys():
+            assert data[key] == self.create_data[key]
+
+        assert "id" in data
+        obj_id = data["id"]
+
+        response = client.get(f"{self.endpoint}/{obj_id}")
+        assert response.status_code == 200, response.text
+        data = response.json()
+        for key in self.create_data.keys():
+            assert data[key] == self.create_data[key]
+
+        assert data["id"] == obj_id
 
     def test__list(self, client, create_obj):
         response = client.get(self.endpoint)
