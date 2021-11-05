@@ -62,6 +62,7 @@ class BaseTestEndpoint():
         data = response.json()
         assert len(data) == 1
 
+        # TODO: create fixture to compare data to create_obj
         for key in self.create_obj_cls.__table__.columns.keys():
             assert data[0][key] == getattr(create_obj, key)
 
@@ -70,6 +71,8 @@ class BaseTestEndpoint():
         assert response.status_code == 200
 
         data = response.json()
+
+        # TODO: use same fixture as in test__list
         for key in self.create_obj_cls.__table__.columns.keys():
             assert data[key] == getattr(create_obj, key)
 
