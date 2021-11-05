@@ -7,7 +7,6 @@ from app.schemas.schemas_windbox import WindboxCreate, WindboxUpdate
 # import models, schemas
 
 
-
 class CRUDWindbox(CRUDBase[Windbox, WindboxCreate, WindboxUpdate]):
     pass
 

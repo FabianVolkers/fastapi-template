@@ -13,7 +13,7 @@ from app.models.models_windbox import Windbox
 #     windbox = Windbox(
 #         hostname="windbox01.windreserve.de"
 #     )
-    
+
 #     db.add(windbox)
 #     db.flush()
 #     yield windbox
@@ -30,7 +30,7 @@ def test_create(app_client: TestClient) -> None:
     response = app_client.post(
         "/windbox/",
         json={"hostname": "windbox02"}
-        )
+    )
     assert response.status_code == 200
     data = response.json()
     assert data["hostname"] == "windbox02"

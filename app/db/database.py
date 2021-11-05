@@ -27,7 +27,11 @@ def get_db_engine(database_url: str) -> Engine:
 
 def get_session_local(database_url: str) -> sessionmaker:
     engine = get_db_engine(database_url)
-    SessionLocal = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
+    SessionLocal = scoped_session(
+        sessionmaker(
+            autocommit=False,
+            autoflush=False,
+            bind=engine))
     return SessionLocal
 
 

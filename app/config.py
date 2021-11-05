@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     sqlalchemy_database_url: str = os.getenv(
         "DATABASE_URL",
         "sqlite:///./config.db"
-        )
+    )
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         return super().__call__(*args, **kwds)
@@ -24,7 +24,7 @@ class TestSettings(Settings):
     sqlalchemy_database_url: str = os.getenv(
         "TEST_DATABASE_URL",
         "sqlite:///./config.test.db"
-        )
+    )
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         return super().__call__(*args, **kwds)

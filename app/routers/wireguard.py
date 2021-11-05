@@ -2,9 +2,11 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
+
 @router.get("/wireguard/", tags=["wireguard"])
 async def read_wireguard_config():
     return[{"ifname": "eth0"}, {"ip_addr": "192.168.178.2"}]
+
 
 @router.get("/users/", tags=["users"])
 async def read_users():

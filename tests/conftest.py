@@ -83,4 +83,3 @@ def app_client(
     ##app = create_app()
     fa_app.dependency_overrides[get_settings] = lambda: get_settings_override
     yield TestClient(fa_app)
-
