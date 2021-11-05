@@ -1,3 +1,4 @@
+import os
 from functools import lru_cache
 from typing import Any, Generator
 
@@ -58,6 +59,7 @@ def db() -> Generator[Session, None, None]:
 
     yield session
 
+    # Cleanup db and disconnect
     session.close()
     transaction.rollback()
     connection.close()
@@ -81,3 +83,7 @@ def app_client(
 ) -> Generator[TestClient, None, None]:
     fa_app.dependency_overrides[get_settings] = lambda: get_settings_override
     yield TestClient(fa_app)
+
+    # Delete test db file
+    cwd = os.getcwd()
+    os.remove(f"{cwd}/config.test.db")
