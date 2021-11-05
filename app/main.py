@@ -1,7 +1,6 @@
 # from typing import Optional
 
-from fastapi import Depends, FastAPI
-from app.dependencies import get_settings
+from fastapi import FastAPI
 
 # import crud
 # import models

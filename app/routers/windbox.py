@@ -1,9 +1,8 @@
 from http import HTTPStatus
-from typing import Any, List, Optional
+from typing import List, Optional
 
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from sqlalchemy.sql.sqltypes import Integer
 
 from app.crud import crud_windbox
 from app.dependencies import get_db

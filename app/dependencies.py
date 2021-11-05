@@ -2,11 +2,9 @@ from functools import lru_cache
 from typing import Generator
 
 from fastapi.param_functions import Depends
-from sqlalchemy.engine import create_engine
-from sqlalchemy.orm.session import Session, sessionmaker
+from sqlalchemy.orm.session import Session
 
 from app.config import Settings
-from app.db.database import get_session_local
 from app.db.session import get_db_session
 
 

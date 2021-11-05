@@ -1,24 +1,18 @@
-from decimal import Decimal
 from functools import lru_cache
 from typing import Any, Generator
 
 import pytest
-from attr import setters
 from fastapi.testclient import TestClient
 from sqlalchemy.engine.base import Engine
 from sqlalchemy.orm import Session
-from sqlalchemy_utils import create_database, database_exists
 
-from app.config import Settings, TestSettings
-from app.db.database import get_db_engine, get_session_local
+from app.config import TestSettings
 from app.db.session import get_db_session
-#from app.db.session import SessionLocal
-from app.dependencies import get_db, get_settings
+from app.dependencies import get_settings
 from app.main import app as fa_app
 # Base, Order, OrderItem, Product, Store
-from app.models import models_windbox, models_wireguard
+from app.models import models_windbox  # , models_wireguard
 
-#from app.migrations.env import target_metadata
 
 target_metadata = [models_windbox.Base.metadata]
 
@@ -80,6 +74,5 @@ def get_settings_override():
 def app_client(
     get_settings_override: Any
 ) -> Generator[TestClient, None, None]:
-    ##app = create_app()
     fa_app.dependency_overrides[get_settings] = lambda: get_settings_override
     yield TestClient(fa_app)

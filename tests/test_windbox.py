@@ -1,23 +1,22 @@
-import json
 from typing import Generator
 
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session
 
-from app.config import Settings
 from app.models.models_windbox import Windbox
 
-# @pytest.fixture()
-# def create_windbox(db: Session) -> Generator[Windbox, None, None]:
-#     windbox = Windbox(
-#         hostname="windbox01.windreserve.de"
-#     )
 
-#     db.add(windbox)
-#     db.flush()
-#     yield windbox
-#     db.rollback()
+@pytest.fixture()
+def create_windbox(db: Session) -> Generator[Windbox, None, None]:
+    windbox = Windbox(
+        hostname="windbox01.windreserve.de"
+    )
+
+    db.add(windbox)
+    db.flush()
+    yield windbox
+    db.rollback()
 
 
 # def test_db_settings(app_client: TestClient) -> None:
@@ -53,8 +52,11 @@ def test_create(app_client: TestClient) -> None:
 
 
 # def test_get(app_client: TestClient, create_windbox: Windbox) -> None:
-#     rv = app_client.get(f"/windbox/{create_windbox.id}", headers={'accept': 'application/json'})
+#     rv = app_client.get(
+#         f"/windbox/{create_windbox.id}",
+#         headers={'accept': 'application/json'}
+#     )
 #     windbox = rv.json()
-#     #assert windbox['detail'][0]['loc'] == "yes"
+
 #     assert rv.status_code == 200
 #     assert windbox["hostname"] == "windbox01.windreserve.de"
