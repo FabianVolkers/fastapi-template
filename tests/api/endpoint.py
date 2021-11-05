@@ -17,7 +17,6 @@ class BaseTestEndpoint():
     update_data: Dict
     endpoint: str
 
-    
     @pytest.fixture
     def client(self, get_settings_override):
         fa_app.dependency_overrides[get_settings] = lambda: get_settings_override
