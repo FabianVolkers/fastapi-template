@@ -61,3 +61,23 @@ def test_get(app_client: TestClient, create_windbox: Windbox) -> None:
 
     assert rv.status_code == 200
     assert windbox["hostname"] == create_windbox.hostname
+
+
+def test_update(app_client: TestClient, create_windbox: Windbox) -> None:
+    response = app_client.put(
+        f"/windbox/{create_windbox.id}",
+        json={
+            "hostname": "windbox03.windreserve.de"})
+    assert response.status_code == 200
+    data = response.json()
+    assert data["hostname"] == "windbox03.windreserve.de"
+    assert data["id"] == create_windbox.id
+
+    response = app_client.get(
+        f"/windbox/{create_windbox.id}",
+        headers={
+            'accept': 'application/json'})
+    assert response.status_code == 200
+    data = response.json()
+    assert data["id"] == create_windbox.id
+    assert data["hostname"] == "windbox03.windreserve.de"
