@@ -51,12 +51,12 @@ def test_create(app_client: TestClient) -> None:
 #     #assert response[0]
 
 
-# def test_get(app_client: TestClient, create_windbox: Windbox) -> None:
-#     rv = app_client.get(
-#         f"/windbox/{create_windbox.id}",
-#         headers={'accept': 'application/json'}
-#     )
-#     windbox = rv.json()
+def test_get(app_client: TestClient, create_windbox: Windbox) -> None:
+    rv = app_client.get(
+        f"/windbox/{create_windbox.id}",
+        headers={'accept': 'application/json'}
+    )
+    windbox = rv.json()
 
-#     assert rv.status_code == 200
-#     assert windbox["hostname"] == "windbox01.windreserve.de"
+    assert rv.status_code == 200
+    assert windbox["hostname"] == create_windbox.hostname
