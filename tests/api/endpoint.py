@@ -1,11 +1,9 @@
 
 
-from typing import Any, Dict, Generator
+from typing import Any, Dict
 
 import pytest
-from _pytest.monkeypatch import resolve
 from fastapi.testclient import TestClient
-from requests.models import Response
 
 from app.dependencies import get_settings
 from app.main import app as fa_app
