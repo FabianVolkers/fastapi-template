@@ -18,7 +18,7 @@ lint:
 	flake8 app tests
 
 autopep8:
-	autopep8 --in-place --aggressive --recursive app tests
+	autopep8 --in-place --aggressive --aggressive --recursive app tests
 
 isort:
 	isort app tests
