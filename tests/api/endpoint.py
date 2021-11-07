@@ -1,10 +1,12 @@
 
 
 from typing import Any, Dict, Generator
+
+import pytest
 from _pytest.monkeypatch import resolve
 from fastapi.testclient import TestClient
-import pytest
 from requests.models import Response
+
 from app.dependencies import get_settings
 from app.main import app as fa_app
 
