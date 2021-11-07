@@ -2,7 +2,7 @@
 
 Config service as RESTful API for the WindBox project. Built with FastAPI
 
-## Running the development environment
+## Running the development environment with make
 
 All of the steps identified below can also be run using make and the `Makefile`.
 
@@ -88,3 +88,12 @@ autopep8 --in-place --aggressive /path/to/file
 Usage:
 
 - Sorting imports: `shift` + `command` + `p`: python refactor: sort imports
+
+## Running the development environment with make poetry
+
+### Install Poetry
+
+```zsh
+ln -s /etc/ssl/* /Library/Frameworks/Python.framework/Versions/3.8/etc/openssl 
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python3 -
+```
