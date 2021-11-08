@@ -44,7 +44,7 @@ def feature_flag(
 
 
 def get_return_value(func, override_return_value):
-    if override_return_value:
+    if override_return_value == "no_override_passed":
 
         type_hints = get_type_hints(func)
 
@@ -52,6 +52,9 @@ def get_return_value(func, override_return_value):
             return type_hints['return']
         else:
             return None
+
+    else:
+        return override_return_value
 
 
 def get_flag_status(flag_name: str) -> bool:
