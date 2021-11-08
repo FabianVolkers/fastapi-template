@@ -3,7 +3,6 @@ from functools import wraps
 from typing import Any, get_type_hints
 from app.config import Settings
 
-from app.dependencies import get_settings
 
 logger = logging.getLogger(__name__)
 
@@ -58,7 +57,10 @@ def get_return_value(func, override_return_value="no_override_passed"):
         return override_return_value
 
 
-def get_flag_status(flag_name: str, settings: Settings = get_settings()) -> bool:
+#def get_flag_status(flag_name: str, settings: Settings = get_settings()) -> bool:
+def get_flag_status(flag_name: str) -> bool:
+    from app.dependencies import get_settings
+    settings = get_settings()
     if flag_name in settings.dict():
         return settings.dict()[flag_name]
     else:
