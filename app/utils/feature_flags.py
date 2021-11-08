@@ -43,7 +43,7 @@ def feature_flag(
     return feature_flag_decorator
 
 
-def get_return_value(func, override_return_value):
+def get_return_value(func, override_return_value="no_override_passed"):
     if override_return_value == "no_override_passed":
 
         type_hints = get_type_hints(func)
