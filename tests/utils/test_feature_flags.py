@@ -1,6 +1,8 @@
 import pytest
 
-from app.utils.feature_flags import feature_flag, get_flag_status, get_return_value
+from app.utils.feature_flags import (
+    feature_flag, get_flag_status, get_return_value
+)
 
 
 def func_a(a):
@@ -12,7 +14,9 @@ def func_b(b: str) -> str:
 
 
 @pytest.mark.parametrize("test_input,expected", [
-    ({"f" :"func_a"}, None), ({"f": "func_b"}, str), ({"f": "func_b", "o": int}, int)
+    ({"f": "func_a"}, None),
+    ({"f": "func_b"}, str),
+    ({"f": "func_b", "o": int}, int)
 ])
 def test__get_return_value(test_input, expected):
     if "o" in test_input:
