@@ -6,7 +6,7 @@ def create_app():
 
     app = FastAPI()
 
-    app.include_router(wireguard.router)
+    app.include_router(wireguard.get_wireguard_router())
     app.include_router(windbox.router)
 
     @app.get("/")
