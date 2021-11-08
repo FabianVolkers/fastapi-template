@@ -13,6 +13,9 @@ class Settings(BaseSettings):
         "sqlite:///./config.db"
     )
 
+    # feature flags
+    flag_api_endpoint_wireguard = False
+
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         return super().__call__(*args, **kwds)
 
