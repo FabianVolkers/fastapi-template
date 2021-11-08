@@ -20,6 +20,7 @@ def feature_flag(
     (default return value type hint | None)
     """
     def feature_flag_decorator(func):
+        logger.debug(f"Evalutating feature flag {flag_name} for {func}")
 
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -53,7 +54,7 @@ def get_return_value(func, override_return_value):
             return None
 
 
-def get_flag_status(flag_name):
+def get_flag_status(flag_name: str) -> bool:
     settings = get_settings()
     if flag_name in settings.dict():
         return settings.dict()[flag_name]
