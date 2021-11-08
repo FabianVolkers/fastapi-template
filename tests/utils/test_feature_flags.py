@@ -1,4 +1,5 @@
 import pytest
+from app.config import TestSettings as _TestSettings
 
 from app.utils.feature_flags import (
     feature_flag, get_flag_status, get_return_value
@@ -25,3 +26,12 @@ def test__get_return_value(test_input, expected):
         return_type = get_return_value(eval(test_input["f"]))
 
     assert return_type == expected
+
+
+@pytest.fixture
+def override_get_feature_flag_settings():
+    class _TestFeatureFlagSettings(_TestSettings):
+        flag_is_enabled: bool = True
+        flag_is_disabled: bool = False
+    settings = _TestFeatureFlagSettings()
+    return settings
