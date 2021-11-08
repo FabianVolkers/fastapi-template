@@ -23,18 +23,12 @@ def feature_flag(
 
         @wraps(func)
         def wrapper(*args, **kwargs):
-            settings = get_settings()
+            
             settings_var = f"flag_{flag_name}"
 
             return_val = get_return_value(func, disabled_return_val)
 
-            try:
-                flag_enabled = settings.dict()[settings_var]
-            except KeyError:
-                logger.debug(
-                    f"Feature flag {flag_name} is not defined in settings"
-                    )
-                flag_enabled = False
+            flag_enabled = get_flag_status(settings_var)
             
             if flag_enabled:
                 logger.info(f"Feature flag {flag_name} is enabled")
@@ -58,5 +52,13 @@ def get_return_value(func, override_return_value):
         else:
             return None
 
+
 def get_flag_status(flag_name):
-    
+    settings = get_settings()
+    if flag_name in settings.dict():
+        return settings.dict()[flag_name]
+    else:
+        logger.debug(
+            f"Feature flag {flag_name} is not defined in settings"
+            )
+        return False
