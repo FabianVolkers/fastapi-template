@@ -1,5 +1,5 @@
-from functools import wraps
 import logging
+from functools import wraps
 from typing import Any, get_type_hints
 
 from app.dependencies import get_settings
@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 
 def feature_flag(
-    flag_name: str, 
+    flag_name: str,
     disabled_return_val: Any = "no_override_passed"
 ):
     """Toggles the decorated function on or off depending on settings.
@@ -23,13 +23,13 @@ def feature_flag(
 
         @wraps(func)
         def wrapper(*args, **kwargs):
-            
+
             settings_var = f"flag_{flag_name}"
 
             return_val = get_return_value(func, disabled_return_val)
 
             flag_enabled = get_flag_status(settings_var)
-            
+
             if flag_enabled:
                 logger.info(f"Feature flag {flag_name} is enabled")
                 return func(*args, **kwargs)
@@ -45,7 +45,7 @@ def feature_flag(
 def get_return_value(func, override_return_value):
     if override_return_value:
 
-        type_hints  = get_type_hints(func)
+        type_hints = get_type_hints(func)
 
         if 'return' in type_hints:
             return type_hints['return']
@@ -60,5 +60,5 @@ def get_flag_status(flag_name):
     else:
         logger.debug(
             f"Feature flag {flag_name} is not defined in settings"
-            )
+        )
         return False
