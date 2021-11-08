@@ -35,3 +35,14 @@ def override_get_feature_flag_settings():
         flag_is_disabled: bool = False
     settings = _TestFeatureFlagSettings()
     return settings
+
+
+@pytest.mark.parametrize("test_input,expected", [
+    ('flag_is_disabled', False),
+    ('flag_does_not_exist', False),
+    ("flag_is_enabled", True)
+])
+def test__get_flag_status(test_input, expected, override_get_feature_flag_settings):
+    flag_enabled = get_flag_status(test_input, override_get_feature_flag_settings)
+
+    assert flag_enabled == expected
