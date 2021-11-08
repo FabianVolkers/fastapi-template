@@ -1,28 +1,23 @@
+import pytest
+
 from app.utils.feature_flags import feature_flag, get_flag_status, get_return_value
 
 
-def test__get_return_value_no_type():
-    def func(a):
-        return a
-
-    return_type = get_return_value(func)
-
-    assert return_type is None
+def func_a(a):
+    return a
 
 
-def test__get_return_value_with_type():
-    def func(a: str) -> str:
-        return a
-
-    return_type = get_return_value(func)
-
-    assert return_type == str
+def func_b(b: str) -> str:
+    return b
 
 
-def test__get_return_value_with_override():
-    def func(a: str) -> str:
-        return a
+@pytest.mark.parametrize("test_input,expected", [
+    ({"f" :"func_a"}, None), ({"f": "func_b"}, str), ({"f": "func_b", "o": int}, int)
+])
+def test__get_return_value(test_input, expected):
+    if "o" in test_input:
+        return_type = get_return_value(eval(test_input["f"]), test_input["o"])
+    else:
+        return_type = get_return_value(eval(test_input["f"]))
 
-    return_type = get_return_value(func, int)
-
-    assert return_type == int
+    assert return_type == expected
