@@ -17,6 +17,7 @@ autopep8 = "^1.6.0"
 pytest = "^6.2.5"
 isort = "^5.10.0"
 pytest-mock = "^3.6.1"
+requests = "^2.26.0"
 
 [tool.poetry.scripts]
 serve =  "app.main:run"
