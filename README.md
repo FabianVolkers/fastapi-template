@@ -97,3 +97,27 @@ Usage:
 ln -s /etc/ssl/* /Library/Frameworks/Python.framework/Versions/3.8/etc/openssl 
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python3 -
 ```
+
+### Install dependencies
+
+```zsh
+poetry install
+```
+
+### Run the development server
+
+```zsh
+poetry run serve
+```
+
+### Setup or migrate db
+
+```zsh
+poetry run setup_db
+```
+
+### Run tests
+
+```zsh
+poetry run pytest
+```
