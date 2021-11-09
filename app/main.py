@@ -2,7 +2,9 @@
 
 from fastapi import FastAPI
 import uvicorn
-
+from alembic.config import Config
+from alembic import command
+import os
 from app.routers import windbox, wireguard
 
 # import crud
@@ -31,6 +33,11 @@ def create_app():
 
 def run():
     uvicorn.run("app.main:app", host="127.0.0.1", port=8000, reload=True)
+
+
+def setup_db():
+    alembic_cfg = Config(f"{os.getcwd()}/alembic.ini")
+    command.upgrade(alembic_cfg, "head")
 
 
 app = create_app()
