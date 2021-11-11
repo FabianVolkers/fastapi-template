@@ -33,6 +33,6 @@ class TestSettings(Settings):
     # Test feature flags
     flag_is_enabled: bool = True
     flag_is_disabled: bool = False
-    
+
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         return super().__call__(*args, **kwds)

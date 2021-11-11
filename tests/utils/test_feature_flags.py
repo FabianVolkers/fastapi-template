@@ -1,10 +1,9 @@
-import pytest
 from unittest import mock
 
-from app.utils.feature_flags import (
-    feature_flag, get_flag_status, get_return_value
-)
+import pytest
 
+from app.utils.feature_flags import (feature_flag, get_flag_status,
+                                     get_return_value)
 from tests.conftest import override_get_settings
 
 
@@ -89,5 +88,5 @@ def test__feature_flag_decorator(test_input, expected):
         return_value = eval(test_input)()
 
         get_settings.assert_called_once()
-        
+
         assert return_value == expected
