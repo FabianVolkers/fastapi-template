@@ -40,4 +40,10 @@ def setup_db():
     command.upgrade(alembic_cfg, "head")
 
 
+def test():
+    # pytest
+    import subprocess
+    subprocess.call(["pytest", "tests/"])
+
+
 app = create_app()

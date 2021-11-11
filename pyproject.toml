@@ -22,6 +22,7 @@ requests = "^2.26.0"
 [tool.poetry.scripts]
 serve =  "app.main:run"
 setup_db = "app.main:setup_db"
+test = "app.main:test"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
