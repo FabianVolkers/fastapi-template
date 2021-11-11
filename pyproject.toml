@@ -21,7 +21,7 @@ requests = "^2.26.0"
 
 [tool.poetry.scripts]
 start =  "app.main:run"
-setup_db = "app.main:setup_db"
+setup-db = "app.main:setup_db"
 test = "app.main:test"
 lint = "app.main:lint"
 format = "app.main:format"
