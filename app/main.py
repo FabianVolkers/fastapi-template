@@ -1,10 +1,12 @@
 # from typing import Optional
-
-from fastapi import FastAPI
-import uvicorn
-from alembic.config import Config
-from alembic import command
 import os
+
+import uvicorn
+from alembic import command
+from alembic.config import Config
+from fastapi import FastAPI
+
+# from flake8.checker
 from app.routers import windbox, wireguard
 
 # import crud
@@ -41,13 +43,11 @@ def setup_db():
 
 
 def test():
-    # pytest
     import subprocess
     subprocess.call(["pytest", "tests/"])
 
 
 def lint():
-    # flake 8 app tests
     import subprocess
     subprocess.call(["flake8", "app", "tests"])
 
