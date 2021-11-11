@@ -1,34 +1,13 @@
-venv:
-	[ ! -d "venv" ] && python3 -m venv venv
+install-poetry:
+	@echo "\nLooking for poetry\n"
+	@./install-poetry.sh
 
-pip:
-	pip install -r requirements.txt
-	pip install -e .
+install-dependencies:
+	@echo "\nInstalling dependencies...\n"
+	@poetry install
 
 setup-db:
-	alembic upgrade head
+	@echo "\nSetting up development database\n"
+	@poetry run setup-db
 
-run:
-	uvicorn app.main:app --reload
-
-test:
-	pytest
-
-lint:
-	flake8 app tests
-
-autopep8:
-	autopep8 --in-place --aggressive --aggressive --recursive app tests
-
-isort:
-	isort app tests
-
-check-isort:
-	isort app tests --check
-
-format:
-	isort autopep8
-
-ci: check-isort lint test
-
-bootstrap: venv pip setup-db
+bootstrap: install-poetry install-dependencies setup-db

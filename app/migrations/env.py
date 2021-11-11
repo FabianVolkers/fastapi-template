@@ -69,9 +69,10 @@ def run_migrations_online():
     #     prefix="sqlalchemy.",
     #     poolclass=pool.NullPool,
     # )
-    from app.db.database import get_db_engine
+    from app.db.session import get_db_session
 
-    connectable = get_db_engine(get_settings().sqlalchemy_database_url)
+    session = get_db_session(get_settings().sqlalchemy_database_url)()
+    connectable = session.bind
 
     with connectable.connect() as connection:
         context.configure(

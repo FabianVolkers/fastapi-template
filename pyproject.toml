@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "app"
+version = "0.1.0"
+description = "Configuration RestAPI for windbox deployment"
+authors = ["Fabian Volkers <fabian.volkers@windreserve.de>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.70.0"
+SQLAlchemy = "^1.4.26"
+uvicorn = {extras = ["standard"], version = "^0.15.0"}
+alembic = "^1.7.4"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^4.0.1"
+autopep8 = "^1.6.0"
+pytest = "^6.2.5"
+isort = "^5.10.0"
+pytest-mock = "^3.6.1"
+requests = "^2.26.0"
+
+[tool.poetry.scripts]
+start =  "app.main:run"
+setup-db = "app.main:setup_db"
+test = "app.main:test"
+lint = "app.main:lint"
+format = "app.main:format"
+ci = "app.main:ci"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
