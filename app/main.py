@@ -52,4 +52,27 @@ def lint():
     subprocess.call(["flake8", "app", "tests"])
 
 
+def isort():
+    import subprocess
+    subprocess.call(["isort", "app", "tests"])
+
+
+def autopep8():
+    import subprocess
+    subprocess.call([
+        "autopep8",
+        "--in-place",
+        "--aggressive",
+        "--aggressive",
+        "--recursive",
+        "app",
+        "tests"
+    ])
+
+
+def format():
+    isort()
+    autopep8()
+
+
 app = create_app()

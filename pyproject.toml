@@ -24,6 +24,7 @@ start =  "app.main:run"
 setup_db = "app.main:setup_db"
 test = "app.main:test"
 lint = "app.main:lint"
+format = "app.main:format"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
