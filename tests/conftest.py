@@ -21,6 +21,10 @@ settings = TestSettings()
 def override_get_settings():
     return TestSettings()
 
+
+@pytest.fixture
+def override_get_settings_fixture():
+    return override_get_settings()
 # @pytest.fixture(scope="session")
 # def db() -> Session:
 #     db_session = get_session_local(settings.sqlalchemy_database_url)
