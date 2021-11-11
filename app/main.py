@@ -75,4 +75,15 @@ def format():
     autopep8()
 
 
+def check_isort():
+    import subprocess
+    subprocess.call(["isort", "app", "tests", "--check"])
+
+
+def ci():
+    check_isort()
+    lint()
+    test()
+
+
 app = create_app()
