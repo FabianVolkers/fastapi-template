@@ -20,7 +20,7 @@ pytest-mock = "^3.6.1"
 requests = "^2.26.0"
 
 [tool.poetry.scripts]
-serve =  "app.main:run"
+start =  "app.main:run"
 setup_db = "app.main:setup_db"
 test = "app.main:test"
 
