@@ -2,7 +2,6 @@ import logging
 from functools import wraps
 from typing import Any, get_type_hints
 
-
 logger = logging.getLogger(__name__)
 
 
