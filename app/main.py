@@ -1,4 +1,3 @@
-# from typing import Optional
 import os
 
 import uvicorn
@@ -6,15 +5,7 @@ from alembic import command
 from alembic.config import Config
 from fastapi import FastAPI
 
-# from flake8.checker
 from app.routers import windbox, wireguard
-
-# import crud
-# import models
-# import schemas
-
-
-# models.Base.metadata.create_all(bind=engine)
 
 
 def create_app():
@@ -28,9 +19,9 @@ def create_app():
         return {"Wind": "Box"}
 
     return app
-# @app.get("/items/{item_id}")
-# def read_item(item_id: int, q: Optional[str] = None):
-    #     return {"item_id": item_id, "q": q}
+
+
+app = create_app()
 
 
 def run():
@@ -84,6 +75,3 @@ def ci():
     check_isort()
     lint()
     test()
-
-
-app = create_app()
