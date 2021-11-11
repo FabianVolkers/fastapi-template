@@ -30,7 +30,7 @@ We use [poetry](https://python-poetry.org/) to manage the development environmen
 
 ### Bootstrap development environment
 
-You can use make with the included `Makefile` to bootstrap the development environment. This will install poetry, use poetry to install dependencies and setup the database. Alternatively, you can use the steps outlined below to perform these actions manually.
+You can use [make](https://linux.die.net/man/1/make) with the included `Makefile` to bootstrap the development environment. This will install poetry, use poetry to install dependencies and setup the database. Alternatively, you can use the steps outlined below to perform these actions manually.
 
 ```zsh
 make bootstrap
@@ -53,7 +53,7 @@ See [below](#setup-the-database) for info.
 
 ### Setup the database
 
-Alembic is configured to manage database migrations. Initialise a new database or update an existing one using `poetry run setup-db`
+[Alembic](https://alembic.sqlalchemy.org/en/latest/) is configured to manage database migrations. Initialise a new database or update an existing one using `poetry run setup-db`
 
 ### Run the development server
 
@@ -69,12 +69,12 @@ The following tools are set up and integrated into poetry to enable testing as w
 
 #### Testing
 
-Tests are executed using pytest. You can run pytest using `poetry run test`.
+Tests are executed using [pytest](https://docs.pytest.org/en/6.2.x/). You can run pytest using `poetry run test`.
 
 #### Linting
 
-flake8 is configured for linting our code. Invoke the linter using `poetry run lint`.
+[flake8](https://flake8.pycqa.org/en/latest/) is configured for linting our code. Invoke the linter using `poetry run lint`.
 
 #### Formatting
 
-isort and autopep8 are set up to format the code and enforce style guides. Run both at once using `poetry run format`.
+[isort](https://pycqa.github.io/isort/) and [autopep8](https://pypi.org/project/autopep8/) are set up to format the code and enforce style guides. Run both at once using `poetry run format`.
