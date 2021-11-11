@@ -1,14 +1,8 @@
-import os
-
-import uvicorn
-from alembic import command
-from alembic.config import Config
-from fastapi import FastAPI
-
-from app.routers import windbox, wireguard
-
-
 def create_app():
+    from fastapi import FastAPI
+
+    from app.routers import windbox, wireguard
+
     app = FastAPI()
 
     app.include_router(wireguard.router)
@@ -25,10 +19,17 @@ app = create_app()
 
 
 def run():
+    import uvicorn
+
     uvicorn.run("app.main:app", host="127.0.0.1", port=8000, reload=True)
 
 
 def setup_db():
+    import os
+
+    from alembic import command
+    from alembic.config import Config
+
     alembic_cfg = Config(f"{os.getcwd()}/alembic.ini")
     command.upgrade(alembic_cfg, "head")
 
