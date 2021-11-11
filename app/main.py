@@ -46,4 +46,10 @@ def test():
     subprocess.call(["pytest", "tests/"])
 
 
+def lint():
+    # flake 8 app tests
+    import subprocess
+    subprocess.call(["flake8", "app", "tests"])
+
+
 app = create_app()
